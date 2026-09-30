@@ -7,20 +7,20 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#1d1329">
 <title>Para ti</title>
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
-
+ 
 <!--
   Regalo de cumpleaños · Puzzle 1
   La palabra clave, las respuestas y el enlace final se cambian en el bloque CONFIG del script (al final del archivo).
 -->
-
+ 
 <style>
   /* Registrada para poder animar el radio del "agujero" del revelado */
   @property --r { syntax: "<length>"; inherits: false; initial-value: -120px; }
-
+ 
   :root {
     --quartz: #f5f2f8;
     --plum: #1d1329;
@@ -35,12 +35,12 @@
     --danger: #c23b52;
     --page: var(--quartz);
     --grain: rgba(120, 108, 138, .07);
-
+ 
     --serif: "Young Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
     --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --ease: cubic-bezier(.22, .7, .2, 1);
   }
-
+ 
   /* Modo oscuro: candado y sección de zoom (la clase "dim" se pone sobre <html> con el scroll) */
   .on-dark, html.dim {
     --ink: #efe8f7;
@@ -52,11 +52,11 @@
   }
   .on-dark { background: var(--plum); color: var(--ink); }
   html.dim { --page: var(--plum); }
-
+ 
   *, *::before, *::after { box-sizing: border-box; }
   [hidden] { display: none !important; }
   h1, h2, p, blockquote, ul { margin: 0; }
-
+ 
   html {
     background: var(--quartz);
     scrollbar-gutter: stable;
@@ -65,20 +65,20 @@
   }
   html.is-locked { overflow: hidden; background: var(--plum); }
   html.dim { background: var(--plum); }
-
+ 
   body {
     margin: 0;
     min-height: 100vh;
     position: relative;
     z-index: 0;
-    overflow-x: clip; /* Previene el desbordamiento horizontal de los destellos gigantes */
+    overflow-x: clip; /* Previene el desbordamiento horizontal */
     background-color: var(--page);
     color: var(--ink);
     font: 400 1.0625rem/1.7 var(--sans);
     -webkit-font-smoothing: antialiased;
     transition: background-color 1.1s ease, color 1.1s ease;
   }
-
+ 
   /* Textura de puntitos optimizada */
   body::before {
     content: "";
@@ -89,11 +89,11 @@
     background-image: radial-gradient(var(--grain) 1px, transparent 1px);
     background-size: 3px 3px;
   }
-
+ 
   ::selection { background: var(--citrine); color: var(--plum); }
   :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
   .on-dark :focus-visible { outline-color: var(--citrine); }
-
+ 
   /* ───────────── Candado ───────────── */
   #lock {
     position: fixed; inset: 0; z-index: 100;
@@ -107,7 +107,7 @@
     --r: 170vmax;
     transition: --r 2.1s cubic-bezier(.62, 0, .26, 1);
   }
-
+ 
   .lock-ui {
     width: min(24rem, 100%);
     display: grid; justify-items: center; gap: 1rem;
@@ -121,7 +121,7 @@
   .lock-ui h1 { font: 400 clamp(2rem, 1.5rem + 2vw, 2.6rem)/1.1 var(--serif); letter-spacing: -.01em; }
   .lock-ui p { color: var(--ink-2); }
   #lockForm { width: 100%; margin-top: .75rem; }
-
+ 
   .lock-field {
     display: flex; align-items: center;
     padding: .4rem .4rem .4rem 1.4rem;
@@ -151,13 +151,13 @@
   .lock-field button:hover { transform: scale(1.06); }
   .lock-msg { min-height: 1.5rem; margin-top: .85rem; font-size: .9375rem; color: var(--muted); }
   .lock-msg.is-error { color: var(--danger); }
-
+ 
   #lock.is-open .lock-icon .shackle { transform: translateY(-3px) rotate(24deg); }
   #lock.is-open .lock-ui > :not(.lock-icon) {
     opacity: 0; transform: translateY(6px);
     transition: opacity .4s ease .3s, transform .4s ease .3s;
   }
-
+ 
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20% { transform: translateX(-7px); }
@@ -166,25 +166,25 @@
     80% { transform: translateX(2px); }
   }
   .shake { animation: shake .42s ease; }
-
+ 
   /* ───────────── Historia (todo centrado) ───────────── */
   .wrap { width: min(46rem, 100% - 3rem); margin-inline: auto; text-align: center; }
   .stack > * + * { margin-top: 1.5rem; }
-
+ 
   .screen {
     min-height: 100vh; min-height: 100svh;
     display: grid; place-items: center;
     padding-block: clamp(3rem, 9vh, 6rem);
   }
   .screen.mid { min-height: 75vh; min-height: 75svh; }
-
+ 
   #bar {
     position: fixed; inset: 0 0 auto 0; z-index: 20;
     height: 2px;
     background: var(--ember);
     transform: scaleX(0); transform-origin: 0 50%;
   }
-
+ 
   /* Tipografía */
   .hero h1, .title, .say {
     font: 400 clamp(2rem, 1.3rem + 2.6vw, 3.1rem)/1.15 var(--serif);
@@ -198,7 +198,7 @@
   }
   .lede { font-size: 1.25rem; line-height: 1.6; }
   .text.lg { font-size: 1.1875rem; }
-
+ 
   /* Subrayado */
   .ul {
     padding-bottom: .16em;
@@ -207,7 +207,7 @@
     transition: background-size 1.1s var(--ease) .7s;
   }
   .rv.in .ul { background-size: 100% .07em; }
-
+ 
   /* Indicador de scroll */
   .hero {
     position: relative;
@@ -236,14 +236,13 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(8px); }
   }
-
+ 
   /* Sección de zoom */
   .focus { position: relative; height: 180vh; height: 180svh; }
   .focus-in {
     position: sticky; top: 0;
     height: 100vh; height: 100svh;
     display: grid; place-items: center;
-    /* Se ha eliminado el overflow: hidden para que la luz respire */
   }
   .zoom {
     position: relative; z-index: 1; /* El texto siempre por encima */
@@ -252,11 +251,18 @@
     will-change: transform;
   }
   .focus.is-focus .zoom { transform: scale(1.06); }
-
-  /* Destellos libres y optimizados (sin recortes en los bordes) */
+ 
+  /* Destellos.
+     FIX móvil: antes cada destello era un círculo de 250vmax (en un celular con
+     pantalla de alta densidad eso son capas de cientos de MB que el navegador
+     descarta) y además desbordaba la página horizontalmente. Ahora la capa es
+     del tamaño de la pantalla (fixed + recorte) y cada destello mide 90vmax,
+     el mismo tamaño visible que tenía antes, pero sin pasarse de memoria. */
   .focus-glow {
-    position: absolute; inset: 0; z-index: 0; /* Asegura su posición detrás del texto */
-    /* Se ha eliminado el overflow: hidden de la máscara */
+    position: fixed; inset: 0; z-index: 0;
+    overflow: hidden;
+    overflow: clip;
+    contain: paint;
     pointer-events: none;
     opacity: 0;
     transition: opacity 1.2s ease;
@@ -265,22 +271,22 @@
   .focus-glow::after {
     content: "";
     position: absolute;
-    width: 250vmax; height: 250vmax;
+    width: 90vmax; height: 90vmax;
     border-radius: 50%;
     will-change: transform;
   }
   .focus-glow::before {
     left: 20%; top: 26%;
-    background: radial-gradient(circle, rgba(var(--ember-rgb), .30) 0%, transparent 45vmax);
+    background: radial-gradient(closest-side, rgba(var(--ember-rgb), .30), transparent);
     transform: translate3d(calc(-50% + var(--fp, 0) * 10vmax), calc(-50% + var(--fp, 0) * -14vmax), 0);
   }
   .focus-glow::after {
     left: 80%; top: 74%;
-    background: radial-gradient(circle, rgba(241, 194, 75, .2) 0%, transparent 40vmax);
+    background: radial-gradient(closest-side, rgba(241, 194, 75, .2), transparent);
     transform: translate3d(calc(-50% + var(--fp, 0) * -10vmax), calc(-50% + var(--fp, 0) * 12vmax), 0);
   }
   .focus.is-focus .focus-glow { opacity: var(--fp, 0); transition: none; }
-
+ 
   /* Líneas de aparición */
   .focus-line-1, .focus-line-2 {
     opacity: 0;
@@ -289,14 +295,14 @@
   }
   .focus.is-focus .focus-line-1 { opacity: 1; transform: none; }
   .focus.is-focus.past-half .focus-line-2 { opacity: 1; transform: none; }
-
+ 
   /* Aparición al hacer scroll */
   .rv {
     opacity: 0; transform: translateY(10px);
     transition: opacity 1.1s var(--ease) var(--d, 0ms), transform 1.1s var(--ease) var(--d, 0ms), color 1.1s ease;
   }
   .rv.in { opacity: 1; transform: none; }
-
+ 
   /* ───────────── Formulario ───────────── */
   .puzzle {
     min-height: 100vh; min-height: 100svh;
@@ -305,7 +311,7 @@
   }
   .form-wrap { width: min(30rem, 100% - 3rem); }
   .form-title { text-align: center; margin-bottom: 2.25rem; }
-
+ 
   .q { position: relative; margin-bottom: 1.6rem; }
   .q label { display: block; margin-bottom: .7rem; text-align: center; color: var(--ink-2); line-height: 1.5; text-wrap: balance; }
   .q input {
@@ -328,7 +334,7 @@
   .q.ok .tick { opacity: 1; transform: none; }
   .q.ok input { border-color: var(--ember); }
   .q.err input { border-color: var(--danger); animation: shake .42s ease; }
-
+ 
   .quiz-block { transition: opacity .45s ease; }
   .quiz-block.leaving { opacity: 0; }
   .status { min-height: 1.5rem; margin-top: .25rem; text-align: center; font-size: .9375rem; color: var(--muted); }
@@ -343,13 +349,13 @@
     transition: transform .2s var(--ease);
   }
   .btn:hover { transform: translateY(-1px); }
-
+ 
   /* Resultado */
   .win { padding-top: 1.5rem; text-align: center; }
   .win.show { animation: rise .9s var(--ease) both; }
   .win .sub { margin: 1rem 0 2.25rem; color: var(--ink-2); }
   @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-
+ 
   .gift {
     position: relative; isolation: isolate; overflow: hidden;
     display: inline-flex; align-items: center; gap: 1rem;
@@ -385,7 +391,7 @@
     0%, 55% { transform: translateX(-120%); }
     100% { transform: translateX(120%); }
   }
-
+ 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: .01ms !important;
@@ -397,9 +403,9 @@
   }
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <!-- ═════════ Candado ═════════ -->
 <div id="lock" class="on-dark" role="dialog" aria-modal="true" aria-labelledby="lockTitle">
   <div class="lock-ui">
@@ -411,7 +417,7 @@
     </svg>
     <h1 id="lockTitle">¿Sos delosh?</h1>
     <p>Si es así, escribe la palabra clave para abrir el paso.</p>
-
+ 
     <form id="lockForm" autocomplete="off" novalidate>
       <div class="lock-field" id="lockField">
         <input id="keyword" type="text" placeholder="Palabra clave" aria-label="Palabra clave" aria-describedby="lockMsg"
@@ -425,11 +431,11 @@
     <noscript><p>Esta página necesita JavaScript para abrirse.</p></noscript>
   </div>
 </div>
-
+ 
 <!-- ═════════ Historia ═════════ -->
 <main id="story" hidden>
   <div id="bar" aria-hidden="true"></div>
-
+ 
   <header class="screen hero">
     <div class="wrap stack">
       <h1 class="rv">¡¡Feliz cumpleaños!! 🎉</h1>
@@ -443,20 +449,20 @@
       </span>
     </a>
   </header>
-
+ 
   <section class="screen" id="sincero">
     <div class="wrap stack">
       <h2 class="title rv"><span class="ul">Debo serte sincero:</span></h2>
       <p class="text lg rv" style="--d:600ms">Sé que no soy muy bueno para armar regalos, y que muchas veces puedo no demostrar el aprecio como otras personas esperan, pero sé que un detalle de este estilo podría gustarte.</p>
     </div>
   </section>
-
+ 
   <section class="screen">
     <div class="wrap">
       <p class="say rv">Me hizo mucha ilusión armar esto, ya que fue un <strong><em>desafío</em></strong> de descubrir cosas nuevas para lograrlo.</p>
     </div>
   </section>
-
+ 
   <!-- El fondo se oscurece y el texto hace zoom mientras esta sección está en pantalla -->
   <section class="focus" id="focus">
     <div class="focus-in">
@@ -467,39 +473,39 @@
       </div>
     </div>
   </section>
-
+ 
   <section class="screen mid">
     <div class="wrap stack">
       <p class="title rv">Pero esto no acaba aquí.</p>
       <p class="text lg rv" style="--d:700ms">Tendrás que pasar por otro medio digital, un video de YouTube.</p>
     </div>
   </section>
-
+ 
   <section class="screen mid">
     <div class="wrap">
       <p class="say rv">Sin embargo, no será tan sencillo como abrirlo y listo.</p>
     </div>
   </section>
-
+ 
   <section class="screen mid">
     <div class="wrap stack">
       <p class="title rv"><span class="ul">Lo que debes hacer:</span></p>
       <p class="text lg rv" style="--d:600ms">Debes rellenar el siguiente formulario, cuyas respuestas son simples y directas. Si no consigues acertar las respuestas, creo que podrías ayudarte viendo más de cerca lo que dice esta página.</p>
     </div>
   </section>
-
+ 
   <section class="screen mid">
     <div class="wrap stack">
       <p class="say rv">No son tan secretas, pero tampoco están regaladas.</p>
       <p class="title rv" style="--d:1400ms">Debes de <strong><em>pensar</em></strong>.</p>
     </div>
   </section>
-
+ 
   <!-- Formulario: aparece justo debajo del texto -->
   <section class="puzzle" id="puzzle" aria-label="Formulario">
     <div class="form-wrap">
       <h2 class="title rv form-title">Formulario</h2>
-
+ 
       <div id="quizBlock" class="quiz-block">
         <form id="quiz" autocomplete="off" novalidate>
           <div class="q rv">
@@ -517,14 +523,14 @@
             <input id="q3" type="text" autocapitalize="off" autocorrect="off" spellcheck="false">
             <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
           </div>
-
+ 
           <p id="quizStatus" class="status" role="status"></p>
           <div class="actions rv" style="--d:360ms">
             <button class="btn" type="submit">Comprobar</button>
           </div>
         </form>
       </div>
-
+ 
       <div id="win" class="win" hidden>
         <h2 class="title">Lo lograste.</h2>
         <p class="sub">Ahora sí, el video te espera.</p>
@@ -535,15 +541,15 @@
           Abrir el video
         </a>
       </div>
-
+ 
     </div>
   </section>
 </main>
-
+ 
 <script>
 (() => {
   'use strict';
-
+ 
   /* ════════════════════════════════════════════════════════════
      CRIPTOGRAFÍA (no hace falta tocar)
      Ni la palabra clave ni las respuestas están escritas en el código:
@@ -551,7 +557,7 @@
      ════════════════════════════════════════════════════════════ */
   /* crypto:start */
   const SALT = 'geoda-v1';
-
+ 
   const [K, H0] = (() => {
     const k = [], h = [];
     for (let n = 2; k.length < 64; n++) {
@@ -563,9 +569,9 @@
     }
     return [k, h];
   })();
-
+ 
   const rotr = (x, n) => (x >>> n) | (x << (32 - n));
-
+ 
   const sha256 = (text) => {
     const bytes = new TextEncoder().encode(text);
     const len = bytes.length;
@@ -576,7 +582,7 @@
     const view = new DataView(data.buffer);
     view.setUint32(total - 8, Math.floor((len * 8) / 4294967296));
     view.setUint32(total - 4, (len * 8) >>> 0);
-
+ 
     const H = H0.slice();
     const w = new Int32Array(64);
     for (let off = 0; off < total; off += 64) {
@@ -602,21 +608,21 @@
     }
     return Array.from(H, (x) => (x >>> 0).toString(16).padStart(8, '0')).join('');
   };
-
+ 
   // Ignora mayúsculas, tildes, espacios y artículos iniciales ("la meta" = "meta")
   const norm = (s) => String(s)
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .toLowerCase().trim().replace(/\s+/g, ' ')
     .replace(/^(el|la|los|las|un|una|unos|unas) /, '')
     .replace(/[^a-z0-9]/g, '');
-
+ 
   const hash = (text) => {
     let h = sha256(SALT + norm(text));
     for (let i = 0; i < 2000; i++) h = sha256(h + SALT);
     return h;
   };
   /* crypto:end */
-
+ 
   /* ════════════════════════════════════════════════════════════
      CONFIG — lo que vas a cambiar
      Para generar una huella nueva: abre esta página, pulsa F12, ve a la
@@ -634,7 +640,7 @@
     link: 'aHR0cHM6Ly95b3V0dS5iZS9UVnNUUlVwT1RGbz9zaT1XeWFfTWdNaXA5VFZ4VVVT',
   };
   window.giftHash = hash;
-
+ 
   /* ═════════ Utilidades ═════════ */
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -642,36 +648,37 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const matches = (value, hashes) => !!norm(value) && hashes.includes(hash(value));
   const restart = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
-
+ 
   /* ═════════ Candado y revelado ═════════ */
   const lock = $('#lock'), lockForm = $('#lockForm'), lockField = $('#lockField');
   const keyword = $('#keyword'), lockMsg = $('#lockMsg'), lockIcon = $('#lockIcon');
   const story = $('#story'), bar = $('#bar'), focusSection = $('#focus');
+  const focusPin = $('.focus-in', focusSection);
   const HELP = lockMsg.textContent;
   const OPEN_DELAY = reduced ? 0 : 650;   // tiempo que tarda el candado en abrirse
   const REVEAL_MS = reduced ? 500 : 2100; // duración del revelado
   let opening = false;
-
+ 
   if (matchMedia('(hover: hover)').matches) keyword.focus();
-
+ 
   keyword.addEventListener('input', () => {
     lockMsg.textContent = HELP;
     lockMsg.classList.remove('is-error');
   });
-
+ 
   lockForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (opening) return;
     if (matches(keyword.value, [CONFIG.keyword])) unlock(); else deny();
   });
-
+ 
   const deny = () => {
     lockMsg.textContent = 'Esa no es la palabra. Prueba de nuevo.';
     lockMsg.classList.add('is-error');
     restart(lockField, 'shake');
     keyword.select();
   };
-
+ 
   const unlock = () => {
     opening = true;
     keyword.blur();
@@ -679,38 +686,39 @@
     lockMsg.textContent = '';
     story.hidden = false;
     window.scrollTo(0, 0);
-
+ 
     // El revelado nace desde el candado
     const r = lockIcon.getBoundingClientRect();
     lock.style.setProperty('--cx', `${r.left + r.width / 2}px`);
     lock.style.setProperty('--cy', `${r.top + r.height / 2}px`);
-
+ 
     lock.classList.add('is-open');
     setTimeout(() => lock.classList.add('opening'), OPEN_DELAY);
     setTimeout(startStory, OPEN_DELAY + REVEAL_MS * 0.4);
-    setTimeout(() => { lock.remove(); html.classList.remove('is-locked'); }, OPEN_DELAY + REVEAL_MS + 100);
+    setTimeout(() => { lock.remove(); html.classList.remove('is-locked'); onScroll(); }, OPEN_DELAY + REVEAL_MS + 100);
   };
-
+ 
   /* ═════════ Historia: aparición, progreso y zona oscura ═════════ */
   let ticking = false;
-
+ 
   const update = () => {
     ticking = false;
     const max = html.scrollHeight - innerHeight;
     const p = max > 0 ? scrollY / max : 0;
     bar.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
-
+ 
     // Zona oscura: el contenido de esta sección queda "pegado" (sticky)
-    // durante un rango exacto de scroll — total = alto de la sección menos
-    // el alto de pantalla. Usamos esa misma geometría, sin margen extra,
-    // para que el oscurecido y el destello empiecen y terminen exactamente
-    // cuando el bloque sigue fijo en pantalla (nunca mientras se va).
+    // durante un rango exacto de scroll.
+    // FIX móvil: el rango real es (alto de la sección − alto del bloque sticky).
+    // Antes se restaba innerHeight, que en celulares cambia cuando la barra del
+    // navegador se oculta/aparece (y no coincide con 100svh), así que el rango
+    // quedaba desfasado y la zona oscura se cortaba o no llegaba a activarse.
     const r = focusSection.getBoundingClientRect();
-    const total = focusSection.offsetHeight - innerHeight;
-    const inside = total > 0 && r.top <= 0 && r.top >= -total;
+    const total = focusSection.offsetHeight - focusPin.offsetHeight;
+    const inside = total > 0 && r.top <= 1 && r.top >= -total - 1;
     html.classList.toggle('dim', inside);
     focusSection.classList.toggle('is-focus', inside);
-
+ 
     // Progreso de scroll dentro del rango "pegado": mueve el detalle de
     // fondo y controla en qué momento aparece cada línea de texto.
     const traveled = Math.min(Math.max(-r.top, 0), Math.max(total, 0));
@@ -723,7 +731,7 @@
     ticking = true;
     requestAnimationFrame(update);
   };
-
+ 
   const startStory = () => {
     const io = new IntersectionObserver((entries) => {
       for (const en of entries) {
@@ -735,20 +743,23 @@
     addEventListener('resize', onScroll);
     update();
   };
-
-  $('.hero-cue').addEventListener('click', (e) => {     e.preventDefault();$('#sincero').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+ 
+  $('.hero-cue').addEventListener('click', (e) => {
+    e.preventDefault();
+    $('#sincero').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
   });
-
+ 
   /* ═════════ Formulario ═════════ */
   const quiz = $('#quiz'), quizBlock = $('#quizBlock'), status = $('#quizStatus');
-  const winBox = $('#win'), gift = $('#gift');   const fields = $$('.q', quiz);
-
+  const winBox = $('#win'), gift = $('#gift');
+  const fields = $$('.q', quiz);
+ 
   fields.forEach((f) => $('input', f).addEventListener('input', () => {
     f.classList.remove('err');
     status.textContent = '';
     status.classList.remove('is-error');
   }));
-
+ 
   quiz.addEventListener('submit', (e) => {
     e.preventDefault();
     let good = 0;
@@ -764,14 +775,14 @@
         restart(f, 'err');
       }
     });
-
+ 
     if (good === fields.length) return win();
     status.classList.add('is-error');
     status.textContent = good
       ? `${good} de ${fields.length} correctas. Mira más de cerca las que faltan.`
       : 'Todavía no. Mira más de cerca lo que dice la página.';
   });
-
+ 
   const win = () => {
     status.textContent = '';
     gift.href = atob(CONFIG.link);
